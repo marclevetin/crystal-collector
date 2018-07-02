@@ -1,0 +1,5 @@
+.diamond {
+    border: 20px solid red;
+    border-radius: 50%;
+    background-color: pink;
+}
