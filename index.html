@@ -8,41 +8,75 @@
     <title>Crystal Collector</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous">
+    <link rel="stylesheet" href="./assets/css/animate.css">
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 
 <body>
-    <div class="container">
-        <nav class="navbar navbar-light bg-light">
-            <span class="navbar-brand mb-0 h1">Crystal Collector</span>
-        </nav>
-
-
+    <div class="container h-100 bg-light text-center">
         <div class="row">
-            <div class="col-12">
-                <div id="crystals"></div>
+            <div class="col">
+                <h1 class="display-2">Crystal Collector</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <p>
+                    <a class="btn btn-primary" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Rules</a>
+                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false"
+                        aria-controls="multiCollapseExample2">Win history</button>
+                </p>
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <div class="collapse multi-collapse" id="multiCollapseExample1">
+                            <div class="card card-body">
+                                <h1>Rules</h1>
+                                <ul class="list-unstyled">
+                                    <li>Each crystal has a secret value.</li>
+                                    <li>Click crystals until your score matches the target value and win!</li>
+                                    <li>Your next game begins automatically.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="collapse multi-collapse" id="multiCollapseExample2">
+                            <div class="card card-body">
+                                <h1>Win history</h1>
+                                <ul class="list-unstyled">
+                                    <li>Wins:
+                                        <span id="win">0</span>
+                                    </li>
+                                    <li>Losses:
+                                        <span id="lose">0</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="crystals" class="row mb-4">
+            <!-- crystals are added here dynamically -->
+        </div>
+        <div class="row">
+            <div class="col">
+                <h2>Scores</h2>
             </div>
         </div>
         <div class="row">
             <div class="col-6">
-                <h1>Your current total:</h1>
-                <p id="current-score">0</p>
+                <h2>Current:</h1>
+                    <p class="display-2" id="current-score">0</p>
             </div>
             <div class="col-6">
-                <h1>Target number</h1>
-                <p id="target-number">100</p>
+                <h2>Target:</h1>
+                    <p class="display-2" id="target-number">100</p>
             </div>
         </div>
-        <div class="row">
-            <div class="col-12">
-                <h1>Current score:</h1>
-                <p><span id="wins">0</span> wins</p>
-                <p><span id="losses">0</span> losses</p>
-            </div>
-        </div>    
     </div>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
         crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"

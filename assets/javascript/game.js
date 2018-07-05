@@ -1,16 +1,33 @@
 const buildCrystal = () => {
+    const $div = $('<div>');
+    const randomEffect = addRandomEffectIn();
+    $div.addClass('col-3 col-sm-3');
+    
     const $image = $('<img>');
-
-    $image.addClass("diamond");
-    $image.attr("src", "");
+    $image.addClass("diamond rounded-circle");
+    $image.addClass(randomEffect);
     $image.attr("src", "./assets/images/diamond-158431.svg");
-    $image.attr("height" , "100px");
-    $image.attr("width" , "100px");
 
     const randomValue = assignRandomValue(12);
     $image.attr("data-value", randomValue);
+    $image.click(incrementScore);
 
-    return $image;
+    $div.append($image)
+
+    return $div;
+}
+
+const addRandomEffectIn = () => {
+    const options = [
+        'bounceIn',
+        'fadeIn',
+        'rotateIn',
+        'jackInTheBox'
+    ]
+
+    const randomNumber = Math.floor(Math.random() * options.length)
+
+    return options[randomNumber]
 }
 
 const assignRandomValue = (maximumValue) => {
@@ -38,43 +55,31 @@ const beginGame = () => {
     setWinningNumber(100, 20);
 }
 
-function incrementScore() {
-    // Must use a function declaration because arrow functions don't have their owne `this`
-    // event.currentTarget points to the enclosing div (possibly due to bubbling?)
+const incrementScore = (event) => {
     const $currentScore = $('#current-score');
-    let newScore = +$currentScore.text() + +$(this).data('value');
+    let newScore = +$currentScore.text() + $(event.currentTarget).data('value');
     
-    $currentScore.text(newScore);
+    $currentScore.fadeOut('fast', () => {
+        $currentScore.text(newScore).fadeIn('fast', () => determineWinOrLose(newScore));
+    });
 
-    determineWinOrLose(newScore);
 }
 
 const determineWinOrLose = (currentScore) => {
     const $targetNumber = +$('#target-number').text();
     
     (currentScore === $targetNumber) 
-            ? processWin()
+            ? processWinsAndLosses('win')
             : (currentScore > $targetNumber) 
-                    ? processLoss()
+                    ? processWinsAndLosses('lose')
                     : '';
 }
 
-const processWin = () => {
-    $wins = $('#wins');
-    $wins.text( +$wins.text() + 1 )
-    alert('You won!');
+const processWinsAndLosses = (type) => {
+    $type = $(`#${type}`);
+    $type.text( +$type.text() + 1 )
+    alert(`You ${type}!`);
     beginGame();
 }
-
-const processLoss = () => {
-    $losses = $('#losses');
-    $losses.text( +$losses.text() + 1 )
-    alert('You lose!');
-    beginGame();
-}
-
-$(document).ready( () => {
-    $('#crystals').on("click", 'img', incrementScore)
-});
 
 beginGame();
