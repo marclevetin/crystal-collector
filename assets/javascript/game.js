@@ -2,12 +2,13 @@ const buildCrystal = () => {
     const $image = $('<img>');
 
     $image.addClass("diamond");
+    $image.attr("src", "");
     $image.attr("src", "./assets/images/diamond-158431.svg");
     $image.attr("height" , "100px");
     $image.attr("width" , "100px");
 
     const randomValue = assignRandomValue(12);
-    $image.attr("value", randomValue);
+    $image.attr("data-value", randomValue);
 
     return $image;
 }
@@ -26,14 +27,54 @@ const addCrystals = (number) => {
 }
 
 const setWinningNumber = (maximumValue) => {
-    debugger
     const number = assignRandomValue(maximumValue);
     $('#target-number').text(number);
 }
 
 const beginGame = () => {
+    $('#crystals').empty();
+    $('#current-score').text('0');
     addCrystals(4);
     setWinningNumber(100, 20);
 }
+
+function incrementScore() {
+    // Must use a function declaration because arrow functions don't have their owne `this`
+    // event.currentTarget points to the enclosing div (possibly due to bubbling?)
+    const $currentScore = $('#current-score');
+    let newScore = +$currentScore.text() + +$(this).data('value');
+    
+    $currentScore.text(newScore);
+
+    determineWinOrLose(newScore);
+}
+
+const determineWinOrLose = (currentScore) => {
+    const $targetNumber = +$('#target-number').text();
+    
+    (currentScore === $targetNumber) 
+            ? processWin()
+            : (currentScore > $targetNumber) 
+                    ? processLoss()
+                    : '';
+}
+
+const processWin = () => {
+    $wins = $('#wins');
+    $wins.text( +$wins.text() + 1 )
+    alert('You won!');
+    beginGame();
+}
+
+const processLoss = () => {
+    $losses = $('#losses');
+    $losses.text( +$losses.text() + 1 )
+    alert('You lose!');
+    beginGame();
+}
+
+$(document).ready( () => {
+    $('#crystals').on("click", 'img', incrementScore)
+});
 
 beginGame();
