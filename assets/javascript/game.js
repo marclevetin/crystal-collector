@@ -9,6 +9,7 @@ const buildCrystal = () => {
 
     const randomValue = assignRandomValue(12);
     $image.attr("data-value", randomValue);
+    $image.click(incrementScore);
 
     return $image;
 }
@@ -65,9 +66,5 @@ const processWinsAndLosses = (type) => {
     alert(`You ${type}!`);
     beginGame();
 }
-
-$(document).ready( () => {
-    $('#crystals').on("click", 'img', incrementScore)
-});
 
 beginGame();
