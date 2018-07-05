@@ -53,23 +53,16 @@ const determineWinOrLose = (currentScore) => {
     const $targetNumber = +$('#target-number').text();
     
     (currentScore === $targetNumber) 
-            ? processWin()
+            ? processWinsAndLosses('win')
             : (currentScore > $targetNumber) 
-                    ? processLoss()
+                    ? processWinsAndLosses('lose')
                     : '';
 }
 
-const processWin = () => {
-    $wins = $('#wins');
-    $wins.text( +$wins.text() + 1 )
-    alert('You won!');
-    beginGame();
-}
-
-const processLoss = () => {
-    $losses = $('#losses');
-    $losses.text( +$losses.text() + 1 )
-    alert('You lose!');
+const processWinsAndLosses = (type) => {
+    $type = $('#' + type);
+    $type.text( +$type.text() + 1 )
+    alert(`You ${type}!`);
     beginGame();
 }
 
