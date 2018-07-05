@@ -61,7 +61,7 @@ const determineWinOrLose = (currentScore) => {
 }
 
 const processWinsAndLosses = (type) => {
-    $type = $('#' + type);
+    $type = $(`#${type}`);
     $type.text( +$type.text() + 1 )
     alert(`You ${type}!`);
     beginGame();
