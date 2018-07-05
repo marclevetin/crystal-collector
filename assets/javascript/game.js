@@ -40,8 +40,6 @@ const beginGame = () => {
 }
 
 const incrementScore = (event) => {
-    // Must use a function declaration because arrow functions don't have their owne `this`
-    // event.currentTarget points to the enclosing div (possibly due to bubbling?)
     const $currentScore = $('#current-score');
     let newScore = +$currentScore.text() + $(event.currentTarget).data('value');
     
