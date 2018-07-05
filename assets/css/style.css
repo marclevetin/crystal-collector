@@ -1,5 +1,24 @@
 .diamond {
-    border: 20px solid red;
-    border-radius: 50%;
-    background-color: pink;
+    border: 0.5em solid mediumpurple;
+    background-color: plum;
+    transition: border 1s, background-color 1s, height 1s, width 1s, margin-bottom 1s, margin-right 1s;
+    height: 5em;
+    width: 5em;
+}
+
+.diamond:hover {
+    border: 0.5em solid plum;
+    background-color: mediumpurple;
+    height: 5.5em;
+    width: 5.5em;
+    margin-bottom: -0.5em;
+    margin-right: -0.5em;
+}
+
+body {
+    background-image: url('../images/amethyst-3203771_1920.jpg');
+    background-repeat: no-repeat;
+    background-color: black;
+    background-size: 100% 100%;
+    height: 100vh;
 }

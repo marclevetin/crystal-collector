@@ -1,17 +1,33 @@
 const buildCrystal = () => {
+    const $div = $('<div>');
+    const randomEffect = addRandomEffectIn();
+    $div.addClass('col-3 col-sm-3');
+    
     const $image = $('<img>');
-
-    $image.addClass("diamond");
-    $image.attr("src", "");
+    $image.addClass("diamond rounded-circle");
+    $image.addClass(randomEffect);
     $image.attr("src", "./assets/images/diamond-158431.svg");
-    $image.attr("height" , "100px");
-    $image.attr("width" , "100px");
 
     const randomValue = assignRandomValue(12);
     $image.attr("data-value", randomValue);
     $image.click(incrementScore);
 
-    return $image;
+    $div.append($image)
+
+    return $div;
+}
+
+const addRandomEffectIn = () => {
+    const options = [
+        'bounceIn',
+        'fadeIn',
+        'rotateIn',
+        'jackInTheBox'
+    ]
+
+    const randomNumber = Math.floor(Math.random() * options.length)
+
+    return options[randomNumber]
 }
 
 const assignRandomValue = (maximumValue) => {
@@ -43,9 +59,10 @@ const incrementScore = (event) => {
     const $currentScore = $('#current-score');
     let newScore = +$currentScore.text() + $(event.currentTarget).data('value');
     
-    $currentScore.text(newScore);
+    $currentScore.fadeOut('fast', () => {
+        $currentScore.text(newScore).fadeIn('fast', () => determineWinOrLose(newScore));
+    });
 
-    determineWinOrLose(newScore);
 }
 
 const determineWinOrLose = (currentScore) => {
