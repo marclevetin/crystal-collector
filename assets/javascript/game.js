@@ -4,7 +4,7 @@ const buildCrystal = () => {
     $div.addClass('col-3 col-sm-3');
     
     const $image = $('<img>');
-    $image.addClass("diamond rounded-circle");
+    $image.addClass("diamond rounded-circle image-fluid animated");
     $image.addClass(randomEffects);
     $image.attr("src", "./assets/images/diamond-158431.svg");
 
@@ -22,7 +22,7 @@ const addRandomEffects = () => {
         'red', 'blue', 'green', 'orange', 'purple', 'yellow'
     ];
 
-    const effects = ['bounceIn', 'fadeIn', 'rotateIn', 'jackInTheBox']
+    const effects = ['flash', 'pulse', 'rubberBand', 'shake', 'tada', 'wobble', 'jello', '', 'flip', 'flipInX', 'flipInY']
 
     const randomColorIndex = Math.floor(Math.random() * colors.length);
     const randomEffectsIndex = Math.floor(Math.random() * effects.length);
@@ -52,7 +52,8 @@ const beginGame = () => {
     $('#crystals').empty();
     $('#current-score').text('0');
     addCrystals(4);
-    setWinningNumber(100, 20);
+    setWinningNumber(100);
+    $('#win-history').click();
 }
 
 const incrementScore = (event) => {
