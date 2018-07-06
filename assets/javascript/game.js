@@ -85,6 +85,7 @@ const processWinsAndLosses = (type) => {
 const addAlert = (type) => {
     const message = (type === 'win') ? '<strong>Holy guacamole!</strong> You won!' : '<strong>Aw, nuts!</strong> You lost!';
     const alertClass = (type === 'win') ? 'alert-success' : 'alert-danger';
+    
     $div = $('<div>');
     $div.addClass(`alert ${alertClass} alert-dismissible fade show`)
     $div.attr('role', 'alert');
