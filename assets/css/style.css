@@ -1,18 +1,51 @@
 .diamond {
-    border: 0.5em solid mediumpurple;
-    background-color: plum;
-    transition: border 1s, background-color 1s, height 1s, width 1s, margin-bottom 1s, margin-right 1s;
-    height: 5em;
-    width: 5em;
+    transition: border 1s, background-color 1s;
 }
+  
 
 .diamond:hover {
-    border: 0.5em solid plum;
-    background-color: mediumpurple;
-    height: 5.5em;
-    width: 5.5em;
-    margin-bottom: -0.5em;
-    margin-right: -0.5em;
+    border: 0.5em solid silver;
+    background-color: silver;
+    animation: spin 3s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+      transform: rotate(0);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+.red {
+    border: 0.5em solid firebrick;
+    background-color: lightcoral;
+}
+
+.orange {
+    border: 0.5em solid darkorange;
+    background-color: orange;
+}
+
+.yellow {
+    border: 0.5em solid gold;
+    background-color: lemonchiffon;
+}
+
+.green {
+    border: 0.5em solid limegreen;
+    background-color: lime;
+}
+
+.blue {
+    border: 0.5em solid deepskyblue;
+    background-color: lightskyblue;
+}
+
+.purple {
+    border: 0.5em solid mediumpurple;
+    background-color: plum;
 }
 
 body {

@@ -1,11 +1,11 @@
 const buildCrystal = () => {
     const $div = $('<div>');
-    const randomEffect = addRandomEffectIn();
+    const randomEffects = addRandomEffects();
     $div.addClass('col-3 col-sm-3');
     
     const $image = $('<img>');
-    $image.addClass("diamond rounded-circle");
-    $image.addClass(randomEffect);
+    $image.addClass("diamond rounded-circle image-fluid animated");
+    $image.addClass(randomEffects);
     $image.attr("src", "./assets/images/diamond-158431.svg");
 
     const randomValue = assignRandomValue(12);
@@ -17,17 +17,17 @@ const buildCrystal = () => {
     return $div;
 }
 
-const addRandomEffectIn = () => {
-    const options = [
-        'bounceIn',
-        'fadeIn',
-        'rotateIn',
-        'jackInTheBox'
-    ]
+const addRandomEffects = () => {
+    const colors = [
+        'red', 'blue', 'green', 'orange', 'purple', 'yellow'
+    ];
 
-    const randomNumber = Math.floor(Math.random() * options.length)
+    const effects = ['flash', 'pulse', 'rubberBand', 'shake', 'tada', 'wobble', 'jello', '', 'flip', 'flipInX', 'flipInY']
 
-    return options[randomNumber]
+    const randomColorIndex = Math.floor(Math.random() * colors.length);
+    const randomEffectsIndex = Math.floor(Math.random() * effects.length);
+
+    return `${colors[randomColorIndex]}  ${effects[randomEffectsIndex]}`;
 }
 
 const assignRandomValue = (maximumValue) => {
@@ -52,7 +52,7 @@ const beginGame = () => {
     $('#crystals').empty();
     $('#current-score').text('0');
     addCrystals(4);
-    setWinningNumber(100, 20);
+    setWinningNumber(100);
 }
 
 const incrementScore = (event) => {
@@ -78,8 +78,24 @@ const determineWinOrLose = (currentScore) => {
 const processWinsAndLosses = (type) => {
     $type = $(`#${type}`);
     $type.text( +$type.text() + 1 )
-    alert(`You ${type}!`);
+    addAlert(type);
     beginGame();
+}
+
+const addAlert = (type) => {
+    const message = (type === 'win') ? '<strong>Holy guacamole!</strong> You won!' : '<strong>Aw, nuts!</strong> You lost!';
+    const alertClass = (type === 'win') ? 'alert-success' : 'alert-danger';
+    
+    $div = $('<div>');
+    $div.addClass(`alert ${alertClass} alert-dismissible fade show`)
+    $div.attr('role', 'alert');
+    $div.html(`${message}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>`
+                )
+    $("#alert").append($div);
+    window.setTimeout( () => {$('.alert').alert('close')}, 3000)
 }
 
 beginGame();

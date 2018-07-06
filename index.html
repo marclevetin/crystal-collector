@@ -15,16 +15,16 @@
 <body>
     <div class="container h-100 bg-light text-center">
         <div class="row">
-            <div class="col">
-                <h1 class="display-2">Crystal Collector</h1>
+            <div id="alert" class="col">
+                <h1 class="display-2 flipInX animated">Crystal Collector</h1>
             </div>
         </div>
         <div class="row">
             <div class="col">
                 <p>
                     <a class="btn btn-primary" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Rules</a>
-                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false"
-                        aria-controls="multiCollapseExample2">Win history</button>
+                    <button id="win-history" class="btn btn-primary" type="button" data-toggle="collapse" data-target="#multiCollapseExample2"
+                        aria-expanded="false" aria-controls="multiCollapseExample2">Win history</button>
                 </p>
                 <div class="row mb-4">
                     <div class="col-12">
@@ -51,16 +51,14 @@
                                         <span id="lose">0</span>
                                     </li>
                                 </ul>
+                                <div ></div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div id="crystals" class="row mb-4">
-            <!-- crystals are added here dynamically -->
-        </div>
-        <div class="row">
+        <div class="row mt-5">
             <div class="col">
                 <h2>Scores</h2>
             </div>
@@ -74,6 +72,9 @@
                 <h2>Target:</h1>
                     <p class="display-2" id="target-number">100</p>
             </div>
+        </div>
+        <div id="crystals" class="row mb-5">
+            <!-- crystals are added here dynamically -->
         </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
