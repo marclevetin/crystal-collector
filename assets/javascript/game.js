@@ -1,11 +1,11 @@
 const buildCrystal = () => {
     const $div = $('<div>');
-    const randomEffect = addRandomEffectIn();
+    const randomEffects = addRandomEffects();
     $div.addClass('col-3 col-sm-3');
     
     const $image = $('<img>');
     $image.addClass("diamond rounded-circle");
-    $image.addClass(randomEffect);
+    $image.addClass(randomEffects);
     $image.attr("src", "./assets/images/diamond-158431.svg");
 
     const randomValue = assignRandomValue(12);
@@ -17,17 +17,17 @@ const buildCrystal = () => {
     return $div;
 }
 
-const addRandomEffectIn = () => {
-    const options = [
-        'bounceIn',
-        'fadeIn',
-        'rotateIn',
-        'jackInTheBox'
-    ]
+const addRandomEffects = () => {
+    const colors = [
+        'red', 'blue', 'green', 'orange', 'purple', 'yellow'
+    ];
 
-    const randomNumber = Math.floor(Math.random() * options.length)
+    const effects = ['bounceIn', 'fadeIn', 'rotateIn', 'jackInTheBox']
 
-    return options[randomNumber]
+    const randomColorIndex = Math.floor(Math.random() * colors.length);
+    const randomEffectsIndex = Math.floor(Math.random() * effects.length);
+
+    return `${colors[randomColorIndex]}  ${effects[randomEffectsIndex]}`;
 }
 
 const assignRandomValue = (maximumValue) => {
