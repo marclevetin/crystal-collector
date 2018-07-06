@@ -53,7 +53,6 @@ const beginGame = () => {
     $('#current-score').text('0');
     addCrystals(4);
     setWinningNumber(100);
-    $('#win-history').click();
 }
 
 const incrementScore = (event) => {
@@ -79,8 +78,23 @@ const determineWinOrLose = (currentScore) => {
 const processWinsAndLosses = (type) => {
     $type = $(`#${type}`);
     $type.text( +$type.text() + 1 )
-    alert(`You ${type}!`);
+    addAlert(type);
     beginGame();
+}
+
+const addAlert = (type) => {
+    const message = (type === 'win') ? '<strong>Holy guacamole!</strong> You won!' : '<strong>Aw, nuts!</strong> You lost!';
+    const alertClass = (type === 'win') ? 'alert-success' : 'alert-danger';
+    $div = $('<div>');
+    $div.addClass(`alert ${alertClass} alert-dismissible fade show`)
+    $div.attr('role', 'alert');
+    $div.html(`${message}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>`
+                )
+    $("#alert").append($div);
+    window.setTimeout( () => {$('.alert').alert('close')}, 3000)
 }
 
 beginGame();
