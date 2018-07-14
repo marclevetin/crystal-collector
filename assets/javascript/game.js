@@ -30,8 +30,8 @@ const addRandomEffects = () => {
     return `${colors[randomColorIndex]}  ${effects[randomEffectsIndex]}`;
 }
 
-const assignRandomValue = (maximumValue) => {
-    return Math.floor(Math.random() * maximumValue) + 1;
+const assignRandomValue = (maximumValue, minimumValue = 1) => {
+    return Math.floor(Math.random() * maximumValue) + minimumValue;
 }
 
 const addCrystals = (number) => {
@@ -44,7 +44,7 @@ const addCrystals = (number) => {
 }
 
 const setWinningNumber = (maximumValue) => {
-    const number = assignRandomValue(maximumValue);
+    const number = assignRandomValue(maximumValue, 20);
     $('#target-number').text(number);
 }
 
