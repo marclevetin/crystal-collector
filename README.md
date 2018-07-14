@@ -25,3 +25,6 @@ Here's how the app works:
 ## Installation
 1. `git clone` the repo.
 2. Open `index.html` in your favorite browser.
+
+## See it live
+https://marclevetin.github.io/crystal-collector/
